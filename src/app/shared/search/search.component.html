@@ -1,0 +1,11 @@
+<div class="input-group search-input-group">
+  <div class="input-group-prepend select-style">
+    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">{{ currentSearchItem.itemValue | translate }}</button>
+    <div class="dropdown-menu">
+      <a class="btn btn-sm btn-block dropdown-item" (click)="onSearchChange(item)" *ngFor="let item of dropdownItems">{{ item.itemValue | translate }}</a>
+    </div>
+  </div>
+  <input type="text" class="form-control" [autofocus]="currentSearchItem.focus" [placeholder]="currentSearchItem.placeHolder | translate" [(ngModel)]="searchTextValue"
+         (keyup.enter)="onSearchValueChange()" aria-label="Text input with dropdown button">
+</div>

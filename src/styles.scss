@@ -1,0 +1,241 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "scss/primary-colors";
+@import "scss/secondary-colors";
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+$open-sans: 'Open Sans', sans-serif;
+
+body {
+  >div {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: $open-sans;
+
+    a:hover {
+      cursor: pointer !important;
+    }
+
+    input[type="text"] {
+      // TODO: 04262019-need to remove if mat input is used or use commented code
+      //border: 1px solid $primary-medium-gray-4;
+      //border-width: 0 0 1px 0;
+      background-color: $primary-white !important;
+    }
+
+    //input[type='text']:disabled {
+    //  border: 1px dotted $primary-medium-gray-4;
+    //  border-width: 0 0 1px 0;
+    //}
+    //
+    //input[type="text"]:focus {
+    //  outline: 0;
+    //}
+
+    .modal-header {
+      border-bottom: 0;
+      div {
+        display: table-cell;
+        &:first-child {
+          padding-right: 8px;
+        }
+      }
+      span {
+        word-break: break-all;
+      }
+    }
+
+    .warning {
+      color: $primary-light-red;
+    }
+
+    .form-control[disabled] {
+      background-color: $primary-medium-gray-4 !important;
+      color: $primary-medium-gray-1;
+      cursor: not-allowed !important;
+    }
+
+    .tab-sets {
+      .tab-content {
+        padding-top: 0;
+      }
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+
+      button {
+        width: 110px;
+        margin: 4px;
+        border-radius: 22px;
+        padding: 2px 28px;
+      }
+    }
+
+    .advance-search {
+      min-height: 430px;
+      box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
+
+      /* Large screens ----------- */
+      @media only screen  and (min-width : 1824px) {
+        transform: translate(232px, 90px) !important;
+        min-width: 76%;
+
+        .arrow {
+          top: -8px;
+          left: 59% !important;
+          transform: rotate(180deg) ;
+        }
+      }
+
+      /* Desktops and laptops ----------- */
+      @media only screen  and (min-width : 1224px) {
+        transform: translate(140px, 90px) !important;
+        min-width: 82%;
+
+        .arrow {
+          top: -8px ;
+          left: 65% !important;
+          transform: rotate(180deg) ;
+        }
+      }
+
+      /* iPads (portrait and landscape) ----------- */
+      @media only screen and (max-device-width : 1024px) {
+        transform: translate(120%, 70px) !important;
+        min-width: 320px;
+
+        .arrow {
+          top: -8px ;
+          left: 50% !important;
+          transform: rotate(180deg) ;
+        }
+
+        /* Smartphones (portrait and landscape) ----------- */
+        @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+          transform: translate(15%, 70px) !important;
+
+          .arrow {
+            top: -8px ;
+            left: 86% !important;
+            transform: rotate(180deg) ;
+          }
+        }
+      }
+
+      .mat-select-panel {
+        margin-left: 20px;
+      }
+
+      .multiple-field-names {
+        .mat-form-field-label-wrapper {
+          display: none;
+        }
+      }
+    }
+
+    .filter-search {
+      box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
+
+      /* Large screens ----------- */
+      @media only screen  and (min-width : 1824px) {
+        transform: translate(1573px, 90px) !important;
+        min-width: 17%;
+
+        .arrow {
+          top: -8px ;
+          left: 86% !important;
+          transform: rotate(180deg) ;
+        }
+      }
+
+      /* Desktops and laptops iPad Pro landscape  ----------- */
+      @media only screen  and (min-width : 1224px) and (max-width : 1823px) {
+        transform: translate(1254px, 90px) !important;
+        min-width: 21%;
+
+        .arrow {
+          top: -8px ;
+          left: 90% !important;
+          transform: rotate(180deg) ;
+        }
+
+        /* iPad pro (landscape) ----------- */
+        @media only screen and (max-device-width : 1366px) and (orientation : landscape) {
+          transform: translate(1041px, 90px) !important;
+          min-width: 320px;
+        }
+      }
+
+      /* iPads (portrait and landscape) ----------- */
+      @media only screen and (max-device-width : 1024px) {
+        min-width: 320px;
+        transform: translate(216%, 70px) !important;
+
+        .arrow {
+          top: -8px ;
+          left: 94% !important;
+          transform: rotate(180deg) ;
+        }
+
+        /* iPads (landscape) ----------- */
+        @media only screen and (min-device-width : 768px) and (orientation : landscape) {
+          transform: translate(216%, 70px) !important;
+        }
+
+        /* iPads (portrait) ----------- */
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1023px) and (orientation : portrait) {
+          transform: translate(138%, 62px) !important;
+        }
+
+        /* iPhone X ----------- */
+        @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+          transform: translate(152%, 62px) !important;
+        }
+
+        @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+          transform: translate(15%, 62px) !important;
+        }
+
+        /* Smartphones (landscape) ----------- */
+        @media only screen and (min-width : 321px) and (max-device-width : 374px) {
+          transform: translate(152%, 62px) !important;
+        }
+
+        /* Smartphones (portrait) ----------- */
+        @media only screen and (max-width : 320px) {
+          transform: translate(15%, 62px) !important;
+        }
+      }
+
+      .mat-select-panel {
+        margin-left: 20px;
+      }
+    }
+
+    .select-all > .mat-pseudo-checkbox {
+      display: none !important;
+    }
+  }
+
+  .cdk-overlay-container {
+    z-index: 2000;
+
+    .mat-select-panel {
+      max-height: 420px;
+    }
+
+    .mat-checkbox-persistent-ripple:hover {
+      opacity: 0 !important;
+    }
+
+    .mat-menu-panel {
+      margin-top: 12px;
+      background-color: $primary-strong-blue;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="orders-list">
+  <div class="order-select-options-row">
+    <div>
+      <span>{{ 'ATHENA_WEB_UI.ORDERS.ORDERS_LIST.SELECT' | translate }}</span>
+      <div class="flex-list">
+        <ul class="list-inline">
+          <li class="list-inline-item" [ngClass]="{ 'active': selectOrderItemsStatus === 1 }" (click)="selectOrderItems(1)"><span>{{ 'ATHENA_WEB_UI.ORDERS.ORDERS_LIST.NONE' | translate }}</span></li>
+          <li class="list-inline-item" [ngClass]="{ 'active': selectOrderItemsStatus === 2 }" (click)="selectOrderItems(2)"><span>{{ 'ATHENA_WEB_UI.ORDERS.ORDERS_LIST.ALL' | translate }}</span></li>
+          <li class="list-inline-item" [ngClass]="{ 'active': selectOrderItemsStatus === 3 }" (click)="selectOrderItems(3)"><span>{{ 'ATHENA_WEB_UI.ORDERS.ORDERS_LIST.VISIBLE' | translate }}</span></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <span>{{ 'ATHENA_WEB_UI.ORDERS.ORDERS_LIST.VIEW' | translate }}</span>
+      <div class="flex-list">
+        <ul class="list-inline">
+          <li class="list-inline-item" *ngFor="let pageSize of pageSizes" (click)="onPageSizeChange(pageSize)"
+              [ngClass]="{ 'active': pageInfo.pageSize === pageSize }">{{pageSize}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="orders">
+    <app-order [selectAll]="selectAll" [orderDetails]="order" (selectedOrder)="selectedOrderChange($event)" *ngFor="let order of listOfOrders"></app-order>
+  </div>
+
+  <div class="orders-list-pagination">
+    <app-pagination [currentPage]="pageInfo.page"
+                    [itemsPerPage]="pageInfo.pageSize"
+                    [maxItemsCounts]="ordersService.orderStagesCounts[(ordersService.currentStatusAndStageNames$ | async).activeStatus][(ordersService.currentStatusAndStageNames$ | async).selectedStage]
+                    || ordersService.orderStatusCounts[(ordersService.currentStatusAndStageNames$ | async).activeStatus]"
+                    (pageSelected)="onPageChange($event)">
+    </app-pagination>
+  </div>
+</div>

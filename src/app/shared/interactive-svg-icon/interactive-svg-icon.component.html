@@ -1,0 +1,6 @@
+<div class="svg-icon">
+  <a class="icon-bg" [ngClass]="item.isDisabled ? 'disable-icon' : (item.isActive ? 'active' : '')" (mouseenter)="getActiveSvgSrc(item)"
+     (mouseleave)="getSvgSrc(item)" (click)="onActionClick(item)" *ngFor="let item of listOfSvgItems">
+    <img [src]="srcValues[item.key]" [alt]="item.altName || item.key">
+  </a>
+</div>

@@ -1,0 +1,69 @@
+@import "../../../scss/primary-colors";
+@import "../../../styles";
+
+.search-input-group {
+  width: 100%;
+  margin: auto;
+  text-align: left;
+
+  .input-group-prepend{
+    width: 50%;
+  }
+
+  button {
+    border: none;
+    border-radius: 22px 0 0 22px;
+    background: $primary-medium-gray-4;
+    font-weight: bold;
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    width: 50%;
+    border: 1px solid $primary-medium-gray-4;
+    border-radius: 22px 0 0 22px;
+    background: $primary-medium-gray-4;
+
+    a {
+      @include text-ellipsis;
+    }
+
+    :hover {
+      border-radius: 22px;
+    }
+  }
+
+  input {
+    padding-right: 29px;
+    border-radius: 0 22px 22px 0;
+    background: url(../../../assets/images/search.svg) right 7px no-repeat;
+    display: inline-block;
+    font-size: 14px;
+  }
+}
+
+/* iPads and mobiles (portrait and landscape) ----------- */
+@media only screen and (max-device-width : 1024px) {
+  /* Styles */
+  .search-input-group {
+    button {
+      padding: 2px 2px 2px 8px;
+      height: 30px;
+      @include text-ellipsis;
+    }
+
+    input {
+      padding: 2px 28px 2px 4px;
+      background-position-y: 5px;
+      height: 30px;
+    }
+
+    /* Smartphones (portrait and landscape) ----------- */
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+      /* Styles */
+      img {
+        height: 24px;
+      }
+    }
+  }
+}

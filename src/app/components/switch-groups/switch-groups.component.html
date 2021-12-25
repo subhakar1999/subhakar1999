@@ -1,0 +1,18 @@
+<div class="switch-groups">
+  <div>
+    <form>
+      <div class="form-group">
+        <label for="switch">Need to LogIn with custom email?</label>
+        <label class="switch form-control" id="switch">
+          <input type="checkbox" [(ngModel)]="isTM" name="isTMCheckbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="form-group" *ngIf="isTM">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" [(ngModel)]="email" id="email" name="emailInput">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    </form>
+  </div>
+</div>

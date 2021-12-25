@@ -1,0 +1,36 @@
+<div>
+  <div class="action-btns" *ngIf="singleSelectionNeeded">
+    <button type='button' class="btn" (click)="onButtonClick(button)"
+            [translate]="button.translationKey" [ngClass]="button.isPrimary ? 'btn-primary' : 'btn-secondary'" *ngFor="let button of buttons"></button>
+  </div>
+
+  <div class="custom-table table" *ngIf="tableData">
+    <div class="table-header flex-container">
+      <div class="flex-child selection-column" *ngIf="singleSelectionNeeded"></div>
+      <div class="flex-child" [ngClass]="columnName === 'productName' || columnName === 'customerName' || columnName === 'customerSoldToName' || columnName === 'customerShipToName' ? 'wide-column' : ''" *ngFor="let columnName of columns">
+        <span>{{ tableData.listItemColumnNames[columnName] | translate }}</span>
+      </div>
+    </div>
+
+    <div class="table-data">
+      <div class="flex-container" *ngFor="let listItem of tableData.listOfItems">
+        <div class="flex-child selection-column" *ngIf="singleSelectionNeeded">
+          <mat-radio-group [(ngModel)]="selectedRowValue"  name="selectRow">
+            <mat-radio-button color="primary" [value]="listItem"></mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="flex-child" [ngClass]="columnName === 'productName' || columnName === 'customerName' || columnName === 'customerSoldToName' || columnName === 'customerShipToName' ? 'wide-column' : ''" *ngFor="let columnName of columns">
+        <span *ngIf="columnName === 'materialAvailabilityDate'; else elseBlock">
+          {{ listItem[columnName] || ('ATHENA_WEB_UI.SHARED.TABLE.OPTIONAL_DETAILS_TEXT.MATERIAL_AVAILABILITY' | translate) }}
+        </span>
+          <ng-template #elseBlock>
+            <span *ngIf="columnName === 'productQuantity'; else stringBlock">{{ listItem[columnName] | number}}</span>
+            <ng-template #stringBlock>
+              <span>{{ listItem[columnName] }}</span>
+            </ng-template>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+@import '../../../scss/primary-colors';
+
+.active{
+  background-color: $primary-strong-blue;
+  color: $primary-white;
+}
+
+.c-bg-grey{
+  //background-color: $primary-light-gray-1;
+  padding: 4px;
+  border-top: 1px solid $primary-medium-gray-4;
+  border-bottom: 1px solid $primary-medium-gray-4;
+  margin: 10px;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+  padding: 6px 0;
+  border-radius: 50%;
+  min-width: 34px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.c-text-bold-grey {
+  color: $primary-dark-gray-2;
+  font-size: 12px;
+  //font-weight: 600;
+  //background-color: $primary-light-gray-1;
+}
+
+.flex-container{
+  display: flex;
+}
+
+.flex-grow {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  flex-grow: 1;
+}

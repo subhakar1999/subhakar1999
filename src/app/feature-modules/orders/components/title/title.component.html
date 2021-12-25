@@ -1,0 +1,47 @@
+<div class="header-panel">
+  <div class="header-left-panel">
+    <img src="assets/images/EcolabLogo.svg" alt="Ecolab Title" />
+  </div>
+  <div class="header-middle-panel">
+    <app-search [currentSearchItem]="searchOptions[0]" [dropdownItems]="searchOptions" (searchContext)="userSearchContext($event)"></app-search>
+    <ng-template #popContent>
+      <app-fields [data]="advanceSearchInputData" (userCriteria)="advanceSearchUserCriteria($event, advSearchPopover)"></app-fields>
+    </ng-template>
+    <app-interactive-svg-icon *ngIf="!userService.currentUserValue.isTerritoryManager" [listOfSvgItems]="advanceSearch" (activeSvgItem)="activeAdvanceSearch($event, advSearchPopover)"
+                              [ngbPopover]="popContent" [autoClose]="false"  triggers="manual" #advSearchPopover="ngbPopover" popoverClass="advance-search">
+    </app-interactive-svg-icon>
+  </div>
+  <div class="header-right-panel">
+    <div class="svg-panel">
+      <ng-template #filterPopContent>
+        <app-fields (click)="$event.stopPropagation()" [data]="filtersInputData"></app-fields>
+      </ng-template>
+
+      <div class="triple-dot-menu d-md-block d-lg-none">
+        <button mat-icon-button [matMenuTriggerFor]="menu" (onMenuClose)="onMenuClose(mobileFilterPopover)">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <!--mat-menu-item-->
+          <app-interactive-svg-icon [listOfSvgItems]="orderActionItems" (activeSvgItem)="activeOrderAction($event, mobileFilterPopover)"
+                                    (click)="$event.stopPropagation()"
+                                    [ngbPopover]="filterPopContent" [autoClose]="false"  triggers="manual" #mobileFilterPopover="ngbPopover" popoverClass="filter-search">
+          </app-interactive-svg-icon>
+        </mat-menu>
+      </div>
+
+      <div class="all-icons p-2 d-none d-lg-block">
+        <app-interactive-svg-icon [listOfSvgItems]="orderActionItems" (activeSvgItem)="activeOrderAction($event, filterPopover)"
+                                  [ngbPopover]="filterPopContent" [autoClose]="false"  triggers="manual" #filterPopover="ngbPopover" popoverClass="filter-search">
+        </app-interactive-svg-icon>
+      </div>
+    </div>
+    <!--<div class="profile-bg"><strong>JS</strong></div>-->
+  </div>
+</div>
+<div *ngIf="canLoadOrders">
+  <app-order-status></app-order-status>
+</div>
+
+
+

@@ -1,0 +1,16 @@
+<div class="order-status">
+  <div class="flex-container">
+    <div class="text-uppercase" [ngClass]= "item.status === (ordersService.currentStatusAndStageNames$ | async).activeStatus ? 'active' : ''"
+         *ngFor="let item of orderStatus" (click)="onStatusChange(item)">
+      <strong>{{ ordersService.orderStatusCounts[item.status] | number }}</strong>
+      <span>{{ item.title | translate }}</span>
+    </div>
+  </div>
+  <div class="order-content">
+    <app-order-stages></app-order-stages>
+    <!--(stageChanged)="onStageChange()"-->
+    <app-orders-list *ngIf="showOrderList"></app-orders-list>
+    <!--Have to remove this and should show a banner message-->
+    <span *ngIf="!showOrderList">No Records Available</span>
+  </div>
+</div>

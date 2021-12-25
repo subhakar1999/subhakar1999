@@ -1,0 +1,139 @@
+<div class="order">
+  <div class="order-header" [ngClass]="toggleShowDetails ? '' : 'with-details'"  *ngIf="orderDetails">
+    <div class="order-input">
+      <app-checkbox [checked]="orderDetails.selected || selectAll" [disabled]="false" (checkboxChange)="selectCheckbox($event, orderDetails)"></app-checkbox>
+    </div>
+    <div class="order-status-indicator" [ngClass]="{'success' : orderDetails.status === 'inTransit',
+    'danger' : orderDetails.status === 'late', 'in-transit' : orderDetails.status === 'atRisk', 'no-pod' : orderDetails.status === 'noPod'}">
+      <div [ngSwitch]="orderDetails.status">
+        <img *ngSwitchCase="'inTransit'" src="assets/images/check-mark.svg" alt="no image" />
+        <img *ngSwitchCase="'late'" src="assets/images/late.svg" alt="no image" />
+        <img *ngSwitchCase="'atRisk'" src="assets/images/atRisk.svg" alt="no image" />
+        <img *ngSwitchCase="'noPod'" src="assets/images/atRisk.svg" alt="no image" />
+      </div>
+      <span>{{ stageName | translate }}</span>
+    </div>
+    <div class="order-info">
+      <div class="order-info-1">
+        <div><span translate="ATHENA_WEB_UI.ORDERS.ORDER.ORDER_#"></span><span>{{ orderDetails.titleInfo.orderNumber }}</span></div>
+        <div><span translate="ATHENA_WEB_UI.ORDERS.ORDER.CUSTOMER_NAME"></span><span>{{ orderDetails.titleInfo.customerName }}</span></div>
+        <div>
+          <a translate [innerHTML]="toggleShowDetails ? 'ATHENA_WEB_UI.ORDERS.ORDER.SEE_DETAILS' : 'ATHENA_WEB_UI.ORDERS.ORDER.HIDE_DETAILS'"
+             (click)="toggle()"></a>
+        </div>
+      </div>
+      <div class="order-info-2">
+        <div class="date-info">
+          <span>{{orderDetails.titleInfo.requestedDeliveryDate}}</span>
+          <span translate="ATHENA_WEB_UI.ORDERS.ORDER.DELIVERY_DATE"></span>
+        </div>
+        <div class="delivery-info" [ngClass]="orderDetails.titleInfo.deliveryNumber ? '' : 'text-muted'">
+          <span>{{ orderDetails.titleInfo.deliveryNumber || listOfOptionalDetailsText['delivery_no'] }}</span>
+          <span translate="ATHENA_WEB_UI.ORDERS.ORDER.DELIVERY_#"></span>
+        </div>
+        <div class="po-info" [ngClass]="orderDetails.titleInfo.customerPoNumber ? '' : 'text-muted'">
+          <span>{{ orderDetails.titleInfo.customerPoNumber || listOfOptionalDetailsText['customer_po_no'] }}</span>
+          <span translate="ATHENA_WEB_UI.ORDERS.ORDER.CUSTOMER_PO_#"></span>
+        </div>
+        <div class="line-info">
+          <span>{{orderDetails.titleInfo.numberOfOrderLines}}</span>
+          <span translate="ATHENA_WEB_UI.ORDERS.ORDER.ORDER_LINES_#"></span>
+        </div>
+        <div class="country-info">
+          <span>{{orderDetails.titleInfo.destinationCountry}}</span>
+          <span translate="ATHENA_WEB_UI.ORDERS.ORDER.DESTINATION_COUNTRY"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!toggleShowDetails" class="order-details">
+    <div class="flex-grow-1 details-info-1">
+      <div>
+        <span>{{orderDetails.details.destinationCity}}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.DESTINATION_CITY"></span>
+      </div>
+      <div>
+        <span>{{orderDetails.details.destinationAddress}}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.FULL_ADDRESS"></span>
+      </div>
+      <div [ngClass]="orderDetails.details.latestETADeliveryDate ? '' : 'text-muted'">
+        <span>{{ orderDetails.details.latestETADeliveryDate || listOfOptionalDetailsText['latest_eta'] }}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.LATEST_ETA_DELIVERY_DATE"></span>
+      </div>
+      <div>
+        <span>{{orderDetails.details.orderCreationDate}}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.ORDER_CREATION_DATE"></span>
+      </div>
+    </div>
+    <div class="flex-grow-1 details-info-2">
+      <div class="delivery-info">
+        <span>{{orderDetails.details.actualDeliveryDate}}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.ACTUAL_DELIVERY_DATE"></span>
+      </div>
+      <div class="delivery-info" [ngClass]="orderDetails.details.shippingNumber ? '' : 'text-muted'">
+        <span>{{ orderDetails.details.shippingNumber || listOfOptionalDetailsText['shipping_no'] }}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.SHIPPING_#"></span>
+      </div>
+      <div class="delivery-info">
+        <span>{{orderDetails.details.soldTo}}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.SOLD_TO"></span>
+      </div>
+      <div class="delivery-info">
+        <span>{{orderDetails.details.shipTo}}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.SHIP_TO"></span>
+      </div>
+    </div>
+    <div class="flex-grow-1 details-info-3">
+      <div class="delivery-info">
+        <span>{{orderDetails.details.originWareHouse}}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.ORIGIN_WAREHOUSE"></span>
+      </div>
+      <div class="delivery-info">
+        <span>{{orderDetails.details.weight}}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.WEIGHT"></span>
+      </div>
+      <div class="delivery-info" [ngClass]="orderDetails.details.carrierName ? '' : 'text-muted'">
+        <span>{{ orderDetails.details.carrierName || listOfOptionalDetailsText['carrier_name'] }}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.CARRIER_NAME"></span>
+      </div>
+      <div class="delivery-info" [ngClass]="orderDetails.details.carrierSCAC ? '' : 'text-muted'">
+        <span>{{ orderDetails.details.carrierSCAC || listOfOptionalDetailsText['carrier_scac'] }}</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.CARRIER_SCAC"></span>
+      </div>
+    </div>
+    <div class="flex-grow-1 details-info-4">
+      <div>
+        <span>ABCDEFABCDEF</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.PRO_#"></span>
+      </div>
+      <div>
+        <span>ABCDEFABCDEF</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.TMS_LOAD_#"></span>
+      </div>
+      <div>
+        <span>ABCD1234567</span>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.CONTAINER_#"></span>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
+  <div *ngIf="!toggleShowDetails" class="order-footer" [ngClass]="orderDetailIcons[0].isActive ? 'with-order-list' : ''">
+    <div class="flex-grow-1">
+      <app-interactive-svg-icon [listOfSvgItems]="orderDetailIcons" (activeSvgItem)="activeOrderDetailIcon($event)"></app-interactive-svg-icon>
+    </div>
+    <div class="flex-grow-1">
+      <div class="disabled-checkbox">
+        <app-checkbox [checked]="false" [disabled]="true" (checkboxChange)="selectCheckbox($event, orderDetails)"></app-checkbox>
+        <span translate="ATHENA_WEB_UI.ORDERS.ORDER.ALERT"></span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!toggleShowDetails && orderDetailIcons[0].isActive" class="order-list">
+    <div>
+      <app-table [tableData]="orderListItemDetails"></app-table>
+    </div>
+  </div>
+</div>

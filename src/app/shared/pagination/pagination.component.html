@@ -1,0 +1,16 @@
+<div>
+  <div class="c-text-bold-grey">
+    <div class="c-bg-grey flex-container" *ngIf="translations">
+      <!-- items being paged -->
+      <div class="flex-grow">
+        <span>{{ translations['info'] }}</span>
+      </div>
+      <!-- pager -->
+      <button [disabled]="pager.currentPage === 1" (click)="pageChanged(1)"><b>{{ 'ATHENA_WEB_UI.SHARED.PAGINATION.FIRST' | translate }}</b></button>
+      <button [disabled]="pager.currentPage === 1" (click)="pageChanged(pager.currentPage - 1)"><b>&lt;</b></button>
+      <button  *ngFor="let page of pager.pages" [disabled]="pager.currentPage === page" (click)="pageChanged(page)" [ngClass]="{active: pager.currentPage === page}"><b>{{page}}</b></button>
+      <button [disabled]="pager.currentPage === pager.lastPageNum" (click)="pageChanged(pager.currentPage + 1)"><b>&gt;</b></button>
+      <button [disabled]="pager.currentPage === pager.lastPageNum" (click)="pageChanged(pager.lastPageNum)"><b>{{ 'ATHENA_WEB_UI.SHARED.PAGINATION.LAST' | translate }}</b></button>
+    </div>
+  </div>
+</div>

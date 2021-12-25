@@ -1,0 +1,17 @@
+<div class="order-stages">
+  <hr class="style1">
+  <div class="flex-container stepwizard-row">
+    <div class="stage" *ngFor="let item of orderStages">
+      <div class="icon-active-bg" [ngClass]="(ordersService.currentStatusAndStageNames$ | async).selectedStage === item.status ? 'active' : ''"
+           (click)="onStageChange(item.status)">
+        <div class="icon-bg">
+          <img [src]= item.imgUrl />
+        </div>
+      </div>
+      <div class="order-stage-title">
+        <strong>{{ordersService.orderStagesCounts[(ordersService.currentStatusAndStageNames$ | async).activeStatus][item.status]}}</strong>
+        <span>{{item.title | translate}}</span>
+      </div>
+    </div>
+  </div>
+</div>

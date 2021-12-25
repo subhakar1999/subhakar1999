@@ -1,0 +1,90 @@
+@import "../../../../../scss/primary-colors";
+@import "../../../../../styles";
+
+.orders-list {
+  margin: 15px;
+
+  .order-select-options-row {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+
+    >div {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+    }
+  }
+
+  .orders {
+    @include custom-scroll-bar;
+  }
+
+  .orders {
+    width: 88%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: auto;
+
+    /* Desktops and laptops ----------- */
+    @media only screen  and (min-width : 1224px) {
+      height: 386px;
+    }
+
+    /* Large screens ----------- */
+    @media only screen  and (min-width : 1824px) {
+      height: 570px;
+    }
+  }
+
+  .orders-list-pagination {
+    width: 88%;
+    margin: auto;
+  }
+
+  .flex-list {
+    position: relative;
+    overflow: hidden;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 0 7px -1px;
+
+      li {
+        flex-grow: 1;
+        flex-basis: auto;
+        margin: .25em 0;
+        padding: 0 0.5em;
+        text-align: center;
+        border-left: 1px solid #ccc;
+        text-decoration: underline;
+      }
+
+      li.active {
+        text-decoration: none;
+        font-weight: bold;
+        color: $primary-strong-blue;
+      }
+
+      li:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px){
+  .orders-list {
+    margin: 0;
+
+    .orders {
+      width: 100%;
+    }
+  }
+}

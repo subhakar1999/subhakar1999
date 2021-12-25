@@ -1,0 +1,40 @@
+@import "../../../scss/primary-colors";
+
+.svg-icon {
+  .icon-bg {
+    background: $primary-white;
+    border-radius: 50%;
+    border: 2px solid $primary-white;
+    padding: 3px;
+    margin: 0 8px 0 8px;
+
+    img {
+      height: 18px;
+      width: 23px;
+      margin: -3px 0 0 1px;
+    }
+
+    &.disable-icon {
+      background-color: $primary-medium-gray-4;
+      border-color: $primary-medium-gray-4;
+      cursor: not-allowed;
+
+      img {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .active, .icon-bg:hover:not(.disable-icon) {
+    background: $primary-strong-blue;
+    cursor: pointer;
+  }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* Styles */
+  .svg-icon .icon-bg {
+    padding: 2px;
+  }
+}

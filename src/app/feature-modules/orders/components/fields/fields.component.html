@@ -1,0 +1,240 @@
+<div [ngClass]="data.activeClass">
+  <div class="title">
+    <span [translate]="data.title"></span>
+  </div>
+
+  <div  class="fields" *ngIf="!showLookUp; else elseBlock">
+    <form (ngSubmit)="onSubmit()" #fieldsForm="ngForm" appIdentityRevealed>
+      <div class="action-btns">
+        <button type='button' class="btn" [ngClass]="data.buttons[0].class" (click)="resetData()"
+                [translate]="data.buttons[0].text"></button>
+        <button type='submit' class="btn" [ngClass]="data.buttons[1].class" [disabled]="fieldsForm.invalid || !isLookUpFieldValid"
+                [translate]="data.buttons[1].text"></button>
+      </div>
+
+      <div class="form-fields">
+        <div class="fields-info fields-info-1">
+          <div>
+            <section class="region-section">
+              <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.REGION"></label>
+              <mat-radio-group required [(ngModel)]="formFieldsModelNames.regionType.value" (ngModelChange)="enableDivision()" name="regionName">
+                <mat-radio-button color="primary" [disabled]="option.isDisabled" [value]="option.value" *ngFor="let option of formFieldsModelNames.regionType.options">{{option.name}}</mat-radio-button>
+              </mat-radio-group>
+            </section>
+
+            <section class="legacy-section">
+              <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.LEGACY"></label>
+              <mat-radio-group required [(ngModel)]="formFieldsModelNames.legacyType.value" (ngModelChange)="enableDivision()" name="legacyName">
+                <mat-radio-button color="primary" [disabled]="option.isDisabled" [value]="option.value" *ngFor="let option of formFieldsModelNames.legacyType.options">{{option.name}}</mat-radio-button>
+              </mat-radio-group>
+            </section>
+
+            <section class="division-section">
+              <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.DIVISION"></label>
+              <mat-form-field [ngClass]="formFieldsModelNames.division.selected.length > 0 ? 'multiple-field-names' : ''">
+                <mat-select [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.DIVISION' | translate" required [disabled]="isDisabled" [(ngModel)]="formFieldsModelNames.division.selected" #divisionSelection="ngModel" name="divisionSelection" multiple>
+                  <mat-option class="select-all" value="true"
+                              (click)="selectAll($event, divisionSelection, formFieldsModelNames.division.options, formFieldsModelNames.division.selected, 'division')">
+                    <mat-checkbox color="primary"
+                                  [checked]="isSelectALL(formFieldsModelNames.division.options, formFieldsModelNames.division.selected)">
+                      <span translate="ATHENA_WEB_UI.ORDERS.FIELDS.SELECT_ALL"></span>
+                    </mat-checkbox>
+                  </mat-option>
+                  <mat-option *ngFor="let option of formFieldsModelNames.division.options" [disabled]="option.isDisabled" [value]="option">{{option.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </section>
+
+            <section class="order-type-section">
+              <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.ORDER_TYPE"></label>
+              <mat-form-field [ngClass]="formFieldsModelNames.orderType.selected.length > 0 ? 'multiple-field-names' : ''">
+                <mat-select [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.ORDER_TYPE' | translate" required [disabled]="isDisabled" [(ngModel)]="formFieldsModelNames.orderType.selected" #orderTypeSelection="ngModel" name="orderTypeSelection" multiple>
+                  <mat-option class="select-all" value="true"
+                              (click)="selectAll($event, orderTypeSelection, formFieldsModelNames.orderType.options, formFieldsModelNames.orderType.selected, 'orderType')">
+                    <mat-checkbox color="primary"
+                                  [checked]="isSelectALL(formFieldsModelNames.orderType.options, formFieldsModelNames.orderType.selected)">
+                      <span translate="ATHENA_WEB_UI.ORDERS.FIELDS.SELECT_ALL"></span>
+                    </mat-checkbox>
+                  </mat-option>
+                  <mat-option *ngFor="let option of formFieldsModelNames.orderType.options" [disabled]="option.isDisabled"  [value]="option">{{option.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </section>
+
+            <section class="export-section">
+              <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.EXPORT"></label>
+              <mat-radio-group [disabled]="isDisabled" required [(ngModel)]="formFieldsModelNames.isExport.value" (ngModelChange)="onExportChange()" name="exportCondition">
+                <mat-radio-button color="primary" [disabled]="option.isDisabled"  [value]="option.value" *ngFor="let option of formFieldsModelNames.isExport.options">{{option.name}}</mat-radio-button>
+              </mat-radio-group>
+            </section>
+          </div>
+
+          <section class="sales-org-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.SALES_ORG"></label>
+            <mat-form-field [ngClass]="formFieldsModelNames.salesOrg.selected.length > 0 ? 'multiple-field-names' : ''">
+              <mat-select [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.SALES_ORG' | translate" [disabled]="isDisabled" [(ngModel)]="formFieldsModelNames.salesOrg.selected" #salesOrgSelection="ngModel" name="salesOrgSelection" multiple >
+                <mat-option class="select-all" value="true"
+                            (click)="selectAll($event, salesOrgSelection, formFieldsModelNames.salesOrg.options, formFieldsModelNames.salesOrg.selected, 'salesOrg')">
+                  <mat-checkbox color="primary"
+                                [checked]="isSelectALL(formFieldsModelNames.salesOrg.options, formFieldsModelNames.salesOrg.selected)">
+                    <span translate="ATHENA_WEB_UI.ORDERS.FIELDS.SELECT_ALL"></span>
+                  </mat-checkbox>
+                </mat-option>
+                <mat-option *ngFor="let option of formFieldsModelNames.salesOrg.options" [disabled]="option.isDisabled"  [value]="option">{{option.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+        </div>
+
+        <div class="fields-info fields-info-2">
+          <section class="customer-name-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.CUSTOMER"></label>
+            <div [ngClass]="isDisabled ? 'text-muted' : ''">
+              <div><span [ngClass]="formFieldsModelNames.customerSearchValue.isCustomerNameSearch ? 'active' : 'text-muted'" (click)="onCustomerSearchChange()">{{formFieldsModelNames.customerSearchValue.options[0].name}}</span></div>
+              <div><span [ngClass]="formFieldsModelNames.customerSearchValue.isCustomerNameSearch ? 'text-muted' : 'active'" (click)="onCustomerSearchChange()">{{formFieldsModelNames.customerSearchValue.options[1].name}}</span></div>
+            </div>
+            <input type="text" [disabled]="formFieldsModelNames.customerSearchValue.isDisabled || isDisabled" (keyup)="validate(false, formFieldsModelNames.customerSearchValue.value)"
+                   [(ngModel)]="formFieldsModelNames.customerSearchValue.value" name="customerSearch"
+                   [placeholder]="formFieldsModelNames.customerSearchValue.isCustomerNameSearch ?
+                   formFieldsModelNames.customerSearchValue.options[0].placeHolder : formFieldsModelNames.customerSearchValue.options[1].placeHolder"
+                   (keyup.enter)="customerSearchValueChange()" >
+            <img src="../../../../../assets/images/search.svg" (click)="customerSearchValueChange()">
+          </section>
+
+          <section class="customer-type-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.CUSTOMER_TYPE"></label>
+            <mat-checkbox [disabled]="option.isDisabled || isDisabled" color="primary" [(ngModel)]="formFieldsModelNames.customerType.selected[option.key]"
+                          [name]="option.key + 'Selection'" [value]="option" *ngFor="let option of formFieldsModelNames.customerType.options">
+              {{option.name}}
+            </mat-checkbox>
+          </section>
+
+          <section class="ship-to-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.SHIP_TO"></label>
+            <mat-form-field>
+              <mat-select [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.COUNTRY_NAME' | translate" [disabled]="(formFieldsModelNames.shipToCountry.isDisabled || isDisabled)" [(ngModel)]="formFieldsModelNames.shipToCountry.selected" (ngModelChange)="countryChange('shipTo')" name="shipToCountrySelection">
+                <mat-option *ngFor="let option of formFieldsModelNames.shipToCountry.options" [value]="option">{{option.countryName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.STATE_OR_PROVISION_NAME' | translate" [disabled]="formFieldsModelNames.shipToState.isDisabled" [(ngModel)]="formFieldsModelNames.shipToState.selected" (ngModelChange)="stateChange()" name="shipToStateSelection">
+                <mat-option *ngFor="let option of formFieldsModelNames.shipToState.options" [value]="option">{{option.stateName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.CITY_NAME' | translate" [disabled]="formFieldsModelNames.shipToCity.isDisabled" [(ngModel)]="formFieldsModelNames.shipToCity.selected" name="shipToCitySelection">
+                <mat-option *ngFor="let option of formFieldsModelNames.shipToCity.options" [value]="option">{{option.cityName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+        </div>
+
+        <div class="fields-info fields-info-3">
+          <section class="creation-date-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.ORDER_CREATION"></label>
+            <mat-form-field [ngClass]="formFieldsModelNames.creationDate.begin ? 'multiple-field-names' : ''">
+              <input matInput [disabled]="isDisabled" [required]="formFieldsModelNames.creationDate.end"
+                     [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.BEGIN_DATE' | translate"
+                     [min]="formFieldsModelNames.creationDate.minDate"
+                     [max]="formFieldsModelNames.creationDate.maxDate"
+                     [matDatepicker]="creationBeginDatepicker" [(ngModel)]="formFieldsModelNames.creationDate.begin" name="creationBeginDate">
+              <mat-datepicker-toggle matSuffix [for]="creationBeginDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #creationBeginDatepicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field [ngClass]="formFieldsModelNames.creationDate.end ? 'multiple-field-names' : ''">
+              <input matInput [disabled]="isDisabled" [required]="formFieldsModelNames.creationDate.begin"
+                     [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.END_DATE' | translate"
+                     [min]="formFieldsModelNames.creationDate.begin"
+                     [max]="formFieldsModelNames.creationDate.maxDate"
+                     [matDatepicker]="creationEndDatepicker" [(ngModel)]="formFieldsModelNames.creationDate.end" name="creationEndDate">
+              <mat-datepicker-toggle matSuffix [for]="creationEndDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #creationEndDatepicker [startAt]="formFieldsModelNames.creationDate.begin"></mat-datepicker>
+            </mat-form-field>
+          </section>
+
+          <section class="req-date-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.REQUESTED_DELIVERY"></label>
+            <mat-form-field [ngClass]="formFieldsModelNames.requestedDeliveryDate.begin ? 'multiple-field-names' : ''">
+              <input matInput [disabled]="isDisabled" [required]="formFieldsModelNames.requestedDeliveryDate.end"
+                     [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.BEGIN_DATE' | translate"
+                     [min]="formFieldsModelNames.requestedDeliveryDate.minDate"
+                     [max]="formFieldsModelNames.requestedDeliveryDate.maxDate"
+                     [matDatepicker]="beginDatepicker" [(ngModel)]="formFieldsModelNames.requestedDeliveryDate.begin" name="reqDeliveryBeginDate">
+              <mat-datepicker-toggle matSuffix [for]="beginDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #beginDatepicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field [ngClass]="formFieldsModelNames.requestedDeliveryDate.end ? 'multiple-field-names' : ''">
+              <input matInput [disabled]="isDisabled" [required]="formFieldsModelNames.requestedDeliveryDate.begin"
+                     [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.END_DATE' | translate"
+                     [min]="formFieldsModelNames.requestedDeliveryDate.begin"
+                     [max]="formFieldsModelNames.requestedDeliveryDate.maxDate"
+                     [matDatepicker]="endDatepicker" [(ngModel)]="formFieldsModelNames.requestedDeliveryDate.end" name="reqDeliveryEndDate">
+              <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #endDatepicker [startAt]="formFieldsModelNames.requestedDeliveryDate.begin"></mat-datepicker>
+            </mat-form-field>
+          </section>
+
+          <section class="shipping-condition-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.SHIPPING_CONDITION"></label>
+            <mat-checkbox [disabled]="option.isDisabled || isDisabled" color="primary" [(ngModel)]="formFieldsModelNames.shippingCondition.selected[option.key]"
+                          [name]="option.key + 'Selection'" [value]="option" *ngFor="let option of formFieldsModelNames.shippingCondition.options">
+              {{option.name}}
+            </mat-checkbox>
+          </section>
+        </div>
+
+        <div class="fields-info fields-info-4">
+          <section class="transportation-mode-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.TRANSPORTATION_MODE"></label>
+            <mat-form-field  [ngClass]="formFieldsModelNames.transportationMode.selected.length > 0 ? 'multiple-field-names' : ''">
+              <mat-select [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.TRANSPORTATION_MODE' | translate"
+                          [disabled]="isDisabled" [(ngModel)]="formFieldsModelNames.transportationMode.selected" #transportationModeSelection="ngModel" name="transportationModeSelection" multiple>
+                <mat-option class="select-all" value="true"
+                            (click)="selectAll($event, transportationModeSelection, formFieldsModelNames.transportationMode.options, formFieldsModelNames.transportationMode.selected, 'transportationMode')">
+                  <mat-checkbox color="primary"
+                                [checked]="isSelectALL(formFieldsModelNames.transportationMode.options, formFieldsModelNames.transportationMode.selected)">
+                    <span translate="ATHENA_WEB_UI.ORDERS.FIELDS.SELECT_ALL"></span>
+                  </mat-checkbox>
+                </mat-option>
+                <mat-option *ngFor="let option of formFieldsModelNames.transportationMode.options" [disabled]="option.isDisabled" [value]="option">{{option.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+
+          <section class="carrier-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.CARRIER"></label>
+            <div [ngClass]="isDisabled ? 'text-muted' : ''">
+              <div><span [ngClass]="formFieldsModelNames.carrierSearchValue.isCarrierNameSearch ? 'active' : 'text-muted'" (click)="onCarrierSearchChange()">{{formFieldsModelNames.carrierSearchValue.options[0].name}}</span></div>
+              <div><span [ngClass]="formFieldsModelNames.carrierSearchValue.isCarrierNameSearch ? 'text-muted' : 'active'" (click)="onCarrierSearchChange()">{{formFieldsModelNames.carrierSearchValue.options[1].name}}</span></div>
+            </div>
+            <input type="text" [disabled]="formFieldsModelNames.carrierSearchValue.isDisabled || isDisabled" (keyup)="validate(true, formFieldsModelNames.carrierSearchValue.value)"
+                   [(ngModel)]="formFieldsModelNames.carrierSearchValue.value" name="carrierSearch"
+                   [placeholder]="formFieldsModelNames.carrierSearchValue.isCarrierNameSearch ?
+                   formFieldsModelNames.carrierSearchValue.options[0].placeHolder : formFieldsModelNames.carrierSearchValue.options[1].placeHolder"
+                   (keyup.enter)="carrierSearchValueChange()" >
+            <img src="../../../../../assets/images/search.svg" (click)="carrierSearchValueChange()">
+          </section>
+
+          <section class="warehouse-section">
+            <label translate="ATHENA_WEB_UI.ORDERS.FIELDS.FIELD_NAMES.PLANT_OR_WAREHOUSE"></label>
+            <mat-form-field>
+              <mat-select [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.COUNTRY_NAME' | translate" [disabled]="(formFieldsModelNames.plantOrWarehouseCountry.isDisabled || isDisabled)" [(ngModel)]="formFieldsModelNames.plantOrWarehouseCountry.selected" (ngModelChange)="countryChange('plantOrWarehouse')" name="plantOrWarehouseCountrySelection">
+                <mat-option *ngFor="let option of formFieldsModelNames.plantOrWarehouseCountry.options" [value]="option">{{option.countryName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select [placeholder]="'ATHENA_WEB_UI.ORDERS.FIELDS.PLACE_HOLDERS.STATE_OR_PROVISION_NAME' | translate" [disabled]="formFieldsModelNames.plantOrWarehouseState.isDisabled" [(ngModel)]="formFieldsModelNames.plantOrWarehouseState.selected" name="warehouseStateSelection">
+                <mat-option *ngFor="let option of formFieldsModelNames.plantOrWarehouseState.options" [value]="option">{{option.stateName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+        </div>
+      </div>
+    </form>
+  </div>
+  <ng-template #elseBlock>
+    <div class="field-look-up">
+      <app-table [singleSelectionNeeded]="true" [buttons]="lookUpButtons" [tableData]="lookUpData" (action)="lookUpAction($event)"></app-table>
+    </div>
+  </ng-template>
+</div>

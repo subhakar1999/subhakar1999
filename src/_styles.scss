@@ -1,0 +1,197 @@
+
+
+@mixin custom-scroll-bar {
+  &::-webkit-scrollbar {
+     width: 8px;
+   }
+
+  &::-webkit-scrollbar-track {
+    background: #ddd;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 5px;
+  }
+}
+
+@mixin fields-in-portrait-mode {
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 7px;
+  }
+
+  .fields {
+
+    .action-btns {
+      margin-bottom: 6px;
+    }
+
+    /* Large screens ----------- */
+    @media only screen  and (min-width : 1824px) {
+      .form-fields {
+        height: 726px;
+      }
+    }
+
+    /* Desktops and laptops ----------- */
+    @media only screen  and (min-width : 1224px) and (max-width : 1823px) {
+      .form-fields {
+        height: 555px;
+      }
+    }
+
+    /* iPads (portrait and landscape) ----------- */
+    @media only screen and (max-device-width : 1024px) {
+      /* Styles */
+      .form-fields {
+        height: 530px;
+      }
+    }
+
+    .form-fields {
+      @include custom-scroll-bar;
+      overflow-y: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      font-size: 14px;
+      font-weight: bold;
+
+      .fields-info {
+        border-left: none;
+        padding-right: 4px;
+        flex: 1;
+        flex-basis: 100%;
+
+        section {
+          margin: 0 15px;
+          padding: 5px;
+          border-bottom: 1px solid $primary-medium-gray-4;
+
+          label {
+            display: block;
+          }
+
+          mat-form-field {
+            width: 180px;
+          }
+
+          mat-checkbox {
+            margin-right: 21px !important;
+          }
+
+          mat-radio-button {
+            font-size: 14px;
+            font-weight: bold;
+            width: 104px;
+          }
+        }
+
+        section:last-child {
+          border-bottom: 1px solid $primary-medium-gray-4;
+        }
+
+        .example-margin{
+          margin-right: 60px;
+          font-weight: bold;
+        }
+
+        input {
+          height: 27px;
+          // font-size: 12px;
+          width: 264px;
+        }
+
+        .customer-name-section, .carrier-section {
+          label {
+            margin-bottom: 0;
+          }
+
+          >div {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 0.5rem;
+
+            div {
+              flex: 1;
+
+              span {
+                cursor: default;
+              }
+
+              .active {
+                border-bottom: 2px solid $primary-text-muted;
+              }
+            }
+          }
+
+          >div:not(.text-muted) div {
+            span {
+              cursor: pointer;
+            }
+            .active {
+              border-color: $primary-strong-blue;
+            }
+          }
+
+          input {
+            width: 240px;
+            border: 1px solid $primary-medium-gray-4;
+            padding: 0 29px 0 5px;
+            border-radius: 22px;
+            margin-bottom: 8px;
+          }
+
+          input[type='text']:disabled {
+            border: 1px dotted $primary-medium-gray-4;
+          }
+
+          img {
+            margin: 2px 0 0 -28px;
+            cursor: pointer;
+          }
+        }
+
+        .creation-date-section, .req-date-section {
+          label {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      .fields-info-1{
+        >div {
+          border: 1px solid $primary-medium-gray-4;
+
+          section:last-child {
+            border: none;
+          }
+        }
+      }
+
+      .fields-info-4 {
+        margin-bottom: 15px;
+
+        section:last-child {
+          border: none;
+        }
+      }
+    }
+  }
+
+  .field-look-up {
+    min-height: 300px;
+    max-height: 480px;
+    margin: 15px;
+    overflow-y: auto;
+    @include custom-scroll-bar;
+  }
+}
+
+@mixin text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

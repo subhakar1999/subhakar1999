@@ -1,0 +1,43 @@
+{
+  "extends": "../tslint.json",
+  "rules": {
+    "max-line-length": {
+      "options": [500]
+    },
+    "new-parens": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": false,
+    "no-console": {
+      "severity": "warning",
+      "options": [
+        "debug",
+        "info",
+        "log",
+        "time",
+        "timeEnd",
+        "trace"
+      ]
+    }
+  },
+  "jsRules": {
+    "max-line-length": {
+      "options": [500]
+    }
+  },
+  "no-unreachable": true,
+  "quotemark": [true, "single"],
+  "directive-selector": [
+      true,
+      "attribute",
+      "app",
+      "camelCase"
+  ],
+  "component-selector": [
+      true,
+      "element",
+      "app",
+      "kebab-case"
+  ]
+}

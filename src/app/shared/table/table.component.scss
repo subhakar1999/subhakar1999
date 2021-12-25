@@ -1,0 +1,45 @@
+@import '../../../scss/primary-colors';
+@import "../../../styles";
+
+.custom-table {
+  .table-header{
+    color: $primary-medium-gray-1;
+  }
+
+  .table-header, .flex-container {
+    display: flex;
+    padding: 0 15px;
+    font-weight: 600;
+    margin: 0 6px 0 0;
+    border-radius: 4px;
+
+    .flex-child {
+      align-items: flex-start;
+      flex: 1;
+      width: 55px;
+      @include text-ellipsis;
+    }
+
+    .wide-column {
+      flex: 2;
+    }
+
+    .selection-column {
+      max-width: 50px;
+      margin-top: 1px;
+    }
+  }
+
+  .table-data{
+    color: $primary-strong-blue;
+
+    > div:nth-child(even) {
+      background: $primary-medium-gray-4;
+      color: $primary-white;
+    }
+  }
+
+  .selection-column {
+    flex: 0;
+  }
+}

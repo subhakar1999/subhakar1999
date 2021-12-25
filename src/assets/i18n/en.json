@@ -1,0 +1,147 @@
+{
+  "ATHENA_WEB_UI": {
+    "LABELS": {},
+    "BUTTONS_TEXT": {
+      "RESET": "Reset",
+      "SEARCH": "Search",
+      "APPLY": "Apply",
+      "OK": "Ok",
+      "CANCEL": "Cancel"
+    },
+    "ORDERS": {
+      "TITLE": {
+        "ORDER_NO": "Order#",
+        "ORDER_NO_PLACE_HOLDER": "Ex: 0123456789",
+        "CUSTOMER_PO_NO": "Customer PO#",
+        "CUSTOMER_PO_NO_PLACE_HOLDER": "Ex: ABC143435DEF",
+        "CUSTOMER_NAME": "Customer Name",
+        "CUSTOMER_NAME_PLACE_HOLDER": "Ex: John Wells",
+        "DELIVERY_NO": "Delivery#",
+        "DELIVERY_NO_PLACE_HOLDER": "Ex: 0123456789",
+        "CUSTOMER_NO": "Customer#",
+        "CUSTOMER_NO_PLACE_HOLDER": "Ex: ABC143435DEF",
+        "STOCK_TRANSFER_ORDER_NO": "Stock Transfer Order#",
+        "STOCK_TRANSFER_ORDER_NO_PLACE_HOLDER": "Ex: STO Palace holder",
+        "PRO_NO": "Pro#",
+        "PRO_NO_PLACE_HOLDER": "Ex: PRO Place holder",
+        "TMS_LOAD_NO": "TMS Load#",
+        "TMS_LOAD_NO_PLACE_HOLDER": "Ex: TMS Load Place holder",
+        "CONTAINER_NO": "Container#",
+        "CONTAINER_NO_PLACE_HOLDER": "Ex: Container Place holder",
+        "POPOVER_TITLES": {
+          "ADVANCE_SEARCH": "AdvanceSearch",
+          "FILTER": "Filter"
+        }
+      },
+      "ORDER_STATUS": {
+        "ORDER_PIPELINE": "Order Pipeline",
+        "AT_RISK": "At Risk",
+        "LATE": "Late",
+        "EXPEDITE": "Expedite",
+        "RETURNS": "Returns",
+        "FUTURE_ORDERS": "Future Orders",
+        "NO_POD": "No POD"
+      },
+      "ORDER_STAGES": {
+        "ORDER_MANAGEMENT": "Order Management",
+        "COMMERCIAL_ISSUES": "Commercial Issues",
+        "STOCK_AVAILABILITY": "Stock Availability",
+        "TRANSPORTATION_PLANNING": "Transportation Planning",
+        "WAREHOUSE_EXECUTION": "Warehouse Execution",
+        "IN_TRANSIT": "In Transit",
+        "DELIVERED": "Delivered"
+      },
+      "ORDERS_LIST": {
+        "SELECT":  "Select",
+        "NONE":  "None",
+        "ALL": "All",
+        "VISIBLE": "Visible",
+        "VIEW": "View"
+      },
+      "ORDER": {
+        "ORDER_#": "Order # ",
+        "CUSTOMER_NAME": "Customer Name ",
+        "SEE_DETAILS": "See Details",
+        "HIDE_DETAILS": "Hide Details",
+        "DELIVERY_DATE": "Estimated Delivery Date",
+        "DELIVERY_#": "Delivery # ",
+        "CUSTOMER_PO_#": "Customer PO # ",
+        "ORDER_LINES_#": "# of Order Lines",
+        "DESTINATION_COUNTRY": "Destination Country",
+        "DESTINATION_CITY": "Destination City",
+        "FULL_ADDRESS": "Full Address",
+        "LATEST_ETA_DELIVERY_DATE": "Latest ETA Delivery Date",
+        "ORDER_CREATION_DATE": "Order Creation Date",
+        "ACTUAL_DELIVERY_DATE": "Actual Delivery Date",
+        "SHIPPING_#": "Shipping",
+        "SOLD_TO": "Sold To",
+        "SHIP_TO": "Ship To",
+        "ORIGIN_WAREHOUSE": "Origin Warehouse / Plant",
+        "WEIGHT": "Weight",
+        "CARRIER_NAME": "Carrier Name",
+        "CARRIER_SCAC": "Carrier SCAC",
+        "PRO_#": "PRO #",
+        "TMS_LOAD_#": "TMS Load #",
+        "CONTAINER_#": "Container #",
+        "ALERT": "Alert me about changes to this order",
+        "PRODUCT_SKU_NO": "Product SKU #",
+        "PRODUCT_NAME": "Product Name",
+        "PRODUCT_QUANTITY": "Product Quantity",
+        "UNIT_OF_MEASURE": "Unit of Measure",
+        "INVOICE_AMOUNT": "Invoice Amount",
+        "MATERIAL_AVAILABILITY": "Material Availability",
+        "OPTIONAL_DETAILS_TEXT": {
+          "DELIVERY_NO": "Not Yet Available",
+          "CUSTOMER_PO_NO": "Not Available",
+          "SHIPPING_NO": "Not Yet Available",
+          "CARRIER_NAME": "Not Yet Available",
+          "CARRIER_SCAC": "Not Yet Available",
+          "LATEST_ETA": "Not Yet Available"
+        }
+      },
+      "FIELDS": {
+        "SELECT_ALL": "Select ALL",
+        "FIELD_NAMES": {
+          "REGION": "Region",
+          "LEGACY": "Legacy",
+          "DIVISION": "Division",
+          "SALES_ORG": "Sales Org",
+          "REQUESTED_DELIVERY": "Requested Delivery",
+          "ORDER_CREATION": "Order Creation",
+          "ORDER_TYPE": "Order Type",
+          "SHIPPING_CONDITION": "Shipping Condition",
+          "EXPORT": "Export",
+          "CUSTOMER": "Customer",
+          "CUSTOMER_TYPE": "Customer Type",
+          "SHIP_TO": "Ship To",
+          "PLANT_OR_WAREHOUSE": "Plant/Warehouse",
+          "TRANSPORTATION_MODE": "Transportation Mode",
+          "CARRIER": "Carrier"
+        },
+        "PLACE_HOLDERS": {
+          "DIVISION": "Division",
+          "ORDER_TYPE": "Order Type",
+          "SALES_ORG": "Sales Org",
+          "BEGIN_DATE": "Begin Date",
+          "END_DATE": "End Date",
+          "COUNTRY_NAME": "Country Name",
+          "STATE_OR_PROVISION_NAME": "State/Province Name",
+          "CITY_NAME": "City Name",
+          "TRANSPORTATION_MODE": "Transportation Mode"
+        }
+      }
+    },
+    "SHARED": {
+      "PAGINATION": {
+        "INFO": "Displaying {{startIndex}} - {{endIndex}} of {{maxItemsCount}} matches",
+        "FIRST": "First",
+        "LAST": "Last"
+      },
+      "TABLE": {
+        "OPTIONAL_DETAILS_TEXT": {
+          "MATERIAL_AVAILABILITY": "Not Yet Available"
+        }
+      }
+    }
+  }
+}
